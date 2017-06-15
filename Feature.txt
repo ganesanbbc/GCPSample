@@ -1,0 +1,8 @@
+As a user can view the short information about services with client info, estimated start date, planned end date, status, etc,.
+As a user can view full service details by invoking details service api(Work Order)
+As a user wants to know the available technicians.
+As a user wants to able to assign to a specific technician groups.
+As a admin wants to update the system property without restart the system
+As a system can expose the api using the google end point.
+As a admin wants to monitor the api traffic
+As a user whats to know if any problem while access the api
