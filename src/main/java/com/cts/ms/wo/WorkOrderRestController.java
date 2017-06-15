@@ -1,0 +1,20 @@
+package com.cts.ms.wo;
+
+
+import com.cts.ServiceEndPoint;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+@RestController
+public class WorkOrderRestController {
+
+
+
+    @RequestMapping(path = ServiceEndPoint.GET_SERVICES, method = GET)
+    public String getService() {
+        return "";
+    }
+
+}
