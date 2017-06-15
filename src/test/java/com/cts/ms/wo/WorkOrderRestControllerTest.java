@@ -1,6 +1,5 @@
 package com.cts.ms.wo;
 
-import com.cts.ServiceEndPoint;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
