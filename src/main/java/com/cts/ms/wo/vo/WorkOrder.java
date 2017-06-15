@@ -1,4 +1,4 @@
-package com.cts.ms.wo;
+package com.cts.ms.wo.vo;
 
 /**
  * Created by 237620 on 6/15/17.

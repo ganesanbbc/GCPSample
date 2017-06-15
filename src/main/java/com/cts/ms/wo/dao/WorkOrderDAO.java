@@ -1,5 +1,6 @@
-package com.cts.ms.wo;
+package com.cts.ms.wo.dao;
 
+import com.cts.ms.wo.vo.WorkOrder;
 import org.springframework.stereotype.Repository;
 
 @Repository
