@@ -30,12 +30,9 @@ public class WorkOrderServiceTest {
     @Test
     public void testGetOrderService(){
         String some_service = "some_service";
-        WorkOrder order = new WorkOrder(some_service);
-
-        Mockito.when(orderDao.getOrders()).thenReturn(order);
+        Mockito.when(orderDao.getOrders()).thenReturn(new WorkOrder(some_service));
 
         WorkOrder actualWorkOrderName = service.getWorkOrders();
-
         assertThat(actualWorkOrderName.getName(), is(some_service));
 
     }
