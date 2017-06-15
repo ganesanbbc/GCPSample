@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-public class WorkOrderRestController {
+public class WorkOrderController {
 
 
     @Autowired
     private WorkOrderService workOrderService;
 
     @RequestMapping(path = ServiceEndPoint.GET_SERVICES, method = GET)
-    public WorkOrder getService() {
+    public WorkOrder getWorkOrders() {
         return workOrderService.getWorkOrders();
     }
 
