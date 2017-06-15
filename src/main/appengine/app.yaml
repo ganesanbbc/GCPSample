@@ -1,0 +1,4 @@
+runtime: custom
+env: standard
+env_variables:
+  'DBG_ENABLE': 'true'

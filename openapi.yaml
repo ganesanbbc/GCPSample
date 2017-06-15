@@ -1,0 +1,27 @@
+
+# [START swagger]
+swagger: "2.0"
+info:
+  description: "A simple Google Cloud Endpoints API example."
+  title: "Endpoints Example"
+  version: "1.0.0"
+host: "mydogshop-3105171.appspot.com"
+# [END swagger]
+
+basePath: "/"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+schemes:
+  - "http"
+  - "https"
+
+paths:
+  "/getServices":
+    get:
+      description: "Returns sample information."
+      responses:
+        200:
+
+
