@@ -11,9 +11,12 @@ public class WorkOrderRestController {
 
 
 
+
     @RequestMapping(path = ServiceEndPoint.GET_SERVICES, method = GET)
-    public String getService() {
-        return "success";
+    public WorkOrder getService() {
+
+
+        return new WorkOrder("demo");
     }
 
 }
