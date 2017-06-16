@@ -8,14 +8,17 @@ info:
 host: "mydogshop-3105171.appspot.com"
 # [END swagger]
 
+
 basePath: "/"
 consumes:
   - "application/json"
 produces:
   - "application/json"
+
 schemes:
   - "http"
   - "https"
+
 
 paths:
   "/getServices":
@@ -23,5 +26,9 @@ paths:
       description: "Returns sample information."
       responses:
         200:
+         description: "Returns sample information."
+
+        default:
+          description: "Returns sample information."
 
 

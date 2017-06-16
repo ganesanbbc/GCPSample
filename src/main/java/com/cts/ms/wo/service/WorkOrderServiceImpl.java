@@ -15,6 +15,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public WorkOrder getWorkOrders() {
+
         return workOrderDAO.getOrders();
     }
 }
