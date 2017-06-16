@@ -1,4 +1,12 @@
-runtime: custom
-env: standard
-env_variables:
-  'DBG_ENABLE': 'true'
+runtime: java
+env: flex
+
+#runtime_config:  # Optional
+#  jdk: openjdk8
+
+handlers:
+- url: /.*
+  script: this field is required, but ignored
+
+manual_scaling:
+  instances: 1

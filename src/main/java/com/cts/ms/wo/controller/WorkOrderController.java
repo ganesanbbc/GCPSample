@@ -22,4 +22,12 @@ public class WorkOrderController {
         return workOrderService.getWorkOrders();
     }
 
+    @RequestMapping(path = "/", method = GET)
+    public String getIndexPage() {
+        return "Welcome";
+    }
+
+
+
+
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class WorkOrderDAO {
 
-    public static final String TABLE_NAME = "WorkOrderc";
+    public static final String TABLE_NAME = "WorkOrder";
 
     public WorkOrder getOrders() {
          List<WorkOrder> workOrderList = new ArrayList();

@@ -58,6 +58,17 @@ public class WorkOrderRestControllerTest {
 
 
     @Test
+    public void thatGotIndexPageResponseWhenCallInitialPage() throws Exception {
+
+        RequestBuilder mockRequest = MockMvcRequestBuilders.get("/");
+        ResultMatcher expectedResult = status().isOk();
+        mockMvc.perform(mockRequest)
+                .andExpect(expectedResult);
+
+    }
+
+
+    @Test
     public void thatGotSuccessResponseWhenCallGetServiceOrderList() throws Exception {
         when(workOrderService.getWorkOrders()).thenReturn(new WorkOrder(""));
         RequestBuilder mockRequest = MockMvcRequestBuilders.get(GET_SERVICES);
