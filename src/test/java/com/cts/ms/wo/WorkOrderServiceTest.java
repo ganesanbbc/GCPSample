@@ -10,6 +10,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -28,12 +31,22 @@ public class WorkOrderServiceTest {
     }
 
     @Test
-    public void thatRespondListOfAvailableResourceWhenRequestingAllAvailableService(){
-        String some_service = "some_service";
-        Mockito.when(orderDao.getOrders()).thenReturn(new WorkOrder(some_service));
-
-        WorkOrder actualWorkOrderName = service.getWorkOrders();
-        assertThat(actualWorkOrderName.getName(), is(some_service));
-
+    public void thatRespondListOfAvailableResourceWhenRequestingAllAvailableService() {
+        int expectedSize = givenReadAllOrder();
+        List<WorkOrder> actualWorkOrderName = whenGetAllOrders();
+        assertThat(actualWorkOrderName.size(), is(expectedSize));
     }
+
+    private List<WorkOrder> whenGetAllOrders() {
+        return service.getWorkOrders();
+    }
+
+    private int givenReadAllOrder() {
+        List<WorkOrder> workOrderList = new ArrayList();
+        workOrderList.add(new WorkOrder("SOME_SERVICE_NAME"));
+        Mockito.when(orderDao.getOrders()).thenReturn(workOrderList);
+        return workOrderList.size();
+    }
+
+
 }

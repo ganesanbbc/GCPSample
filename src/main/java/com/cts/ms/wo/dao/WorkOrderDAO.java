@@ -16,7 +16,7 @@ public class WorkOrderDAO {
 
     public static final String TABLE_NAME = "WorkOrder";
 
-    public WorkOrder getOrders() {
+    public List<WorkOrder> getOrders() {
          List<WorkOrder> workOrderList = new ArrayList();
 
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
@@ -31,6 +31,6 @@ public class WorkOrderDAO {
             workOrderList.add(new WorkOrder(name));
         }
 
-        return workOrderList.get(0);
+        return workOrderList;
     }
 }

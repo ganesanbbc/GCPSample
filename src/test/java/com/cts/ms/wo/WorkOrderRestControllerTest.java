@@ -22,6 +22,9 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICES;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -65,12 +68,14 @@ public class WorkOrderRestControllerTest {
         mockMvc.perform(mockRequest)
                 .andExpect(expectedResult);
 
+        List<WorkOrder> workOrderList = new ArrayList();
+        workOrderList.add(new WorkOrder(""));
+        when(workOrderService.getWorkOrders()).thenReturn(workOrderList);
     }
 
 
     @Test
     public void thatGotSuccessResponseWhenCallGetServiceOrderList() throws Exception {
-        when(workOrderService.getWorkOrders()).thenReturn(new WorkOrder(""));
         RequestBuilder mockRequest = MockMvcRequestBuilders.get(GET_SERVICES);
         ResultMatcher expectedResult = status().isOk();
         mockMvc.perform(mockRequest)
@@ -80,7 +85,6 @@ public class WorkOrderRestControllerTest {
 
     @Test
     public void thatGotServiceListWhenRequestServiceList() throws Exception {
-        when(workOrderService.getWorkOrders()).thenReturn(new WorkOrder(""));
         RequestBuilder getServiceRequest = MockMvcRequestBuilders.get(GET_SERVICES)
                 .accept(MediaType.APPLICATION_JSON);
         ResultMatcher expectedResult = jsonPath("$.name").exists();

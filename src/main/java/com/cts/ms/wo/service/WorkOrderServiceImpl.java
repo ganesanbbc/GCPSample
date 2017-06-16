@@ -5,6 +5,8 @@ import com.cts.ms.wo.dao.WorkOrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class WorkOrderServiceImpl implements WorkOrderService {
@@ -14,7 +16,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     WorkOrderDAO workOrderDAO;
 
     @Override
-    public WorkOrder getWorkOrders() {
+    public List<WorkOrder> getWorkOrders() {
 
         return workOrderDAO.getOrders();
     }
