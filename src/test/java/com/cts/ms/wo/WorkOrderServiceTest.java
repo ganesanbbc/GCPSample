@@ -28,7 +28,7 @@ public class WorkOrderServiceTest {
     }
 
     @Test
-    public void testGetOrderService(){
+    public void thatRespondListOfAvailableResourceWhenRequestingAllAvailableService(){
         String some_service = "some_service";
         Mockito.when(orderDao.getOrders()).thenReturn(new WorkOrder(some_service));
 

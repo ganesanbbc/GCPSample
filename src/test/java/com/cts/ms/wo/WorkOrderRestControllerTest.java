@@ -1,7 +1,7 @@
 package com.cts.ms.wo;
 
 import com.cts.ms.wo.controller.WorkOrderController;
-import com.cts.ms.wo.service.WorkOrderServiceImpl;
+import com.cts.ms.wo.service.WorkOrderService;
 import com.cts.ms.wo.vo.WorkOrder;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -45,7 +45,7 @@ public class WorkOrderRestControllerTest {
     private WebApplicationContext context;
 
     @Mock
-    private WorkOrderServiceImpl workOrderService;
+    private WorkOrderService workOrderService;
 
 
     @Before

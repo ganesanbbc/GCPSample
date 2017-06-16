@@ -2,7 +2,7 @@ package com.cts.ms.wo.controller;
 
 
 import com.cts.ms.wo.ServiceEndPoint;
-import com.cts.ms.wo.service.WorkOrderServiceImpl;
+import com.cts.ms.wo.service.WorkOrderService;
 import com.cts.ms.wo.vo.WorkOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class WorkOrderController {
 
 
     @Autowired
-    private WorkOrderServiceImpl workOrderService;
+    private WorkOrderService workOrderService;
 
     @RequestMapping(path = ServiceEndPoint.GET_SERVICES, method = GET)
     public WorkOrder getWorkOrders() {
