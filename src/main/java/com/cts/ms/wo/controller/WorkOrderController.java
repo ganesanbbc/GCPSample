@@ -29,6 +29,13 @@ public class WorkOrderController {
         return "Welcome";
     }
 
+    @RequestMapping(path = ServiceEndPoint.GET_SERVICE, method = GET)
+    public WorkOrder getWorkOrder() {
+        return workOrderService.getWorkOrderById(0);
+    }
+
+
+
 
 
 

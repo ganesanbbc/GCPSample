@@ -33,4 +33,8 @@ public class WorkOrderDAO {
 
         return workOrderList;
     }
+
+    public WorkOrder getOrderById(int i) {
+        return new WorkOrder("");
+    }
 }

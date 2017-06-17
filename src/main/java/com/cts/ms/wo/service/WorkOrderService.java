@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface WorkOrderService {
     List<WorkOrder> getWorkOrders();
+
+    WorkOrder getWorkOrderById(int i);
 }
