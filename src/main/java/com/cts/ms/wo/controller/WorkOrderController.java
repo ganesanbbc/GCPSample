@@ -43,7 +43,9 @@ public class WorkOrderController {
         if (workOrderList ==null || workOrderList.size() == 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return ResponseEntity.status(HttpStatus.OK).body(workOrderList);
+
+        List<WorkOrder> proceededOrders = workOrderService.createOrders(workOrderList);
+        return ResponseEntity.status(HttpStatus.OK).body(proceededOrders);
     }
 
 

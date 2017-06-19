@@ -53,9 +53,6 @@ public class WorkOrderServiceTest {
 
     }
 
-
-
-
     private List<WorkOrder> whenGetAllOrders() {
         return service.getWorkOrders();
     }
