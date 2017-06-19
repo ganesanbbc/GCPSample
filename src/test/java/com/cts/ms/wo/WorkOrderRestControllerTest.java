@@ -111,6 +111,17 @@ public class WorkOrderRestControllerTest {
         mockMvc.perform(post(POST_ORDERS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
+                .content(""))
+                .andExpect(status().isBadRequest());
+
+    }
+
+    @Test
+    public void thatShouldReturnsBadRequestStatusCodeWhenBodyContainsEmptyObject() throws Exception {
+
+        mockMvc.perform(post(POST_ORDERS)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content("{}"))
                 .andExpect(status().isBadRequest());
 
