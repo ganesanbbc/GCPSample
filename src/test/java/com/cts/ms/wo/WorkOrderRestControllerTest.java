@@ -29,6 +29,7 @@ import java.util.List;
 import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICE;
 import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICES;
 import static com.cts.ms.wo.ServiceEndPoint.POST_ORDERS;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -43,7 +44,12 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class WorkOrderRestControllerTest {
 
 
-    public static final String POST_RESPONSE = "[{\"name\" : \"cts_1010\", \"customerid\" : \"cts\", " +
+    public static final String POST_REQUEST_CONTENT = "[{\"name\" : \"cts_1010\", \"customerid\" : \"cts\", " +
+            "\"details\" : \"cleaning\", \"start_date\" : \"10/10/2017\"}]";
+
+    public static final String POST_REQUEST_MULTIPLE_CONTENT = "[{\"name\" : \"cts_1010\", \"customerid\" : \"cts\", " +
+            "\"details\" : \"cleaning\", \"start_date\" : \"10/10/2017\"}," +
+            "{\"name\" : \"cts_1010\", \"customerid\" : \"cts\", " +
             "\"details\" : \"cleaning\", \"start_date\" : \"10/10/2017\"}]";
     @InjectMocks
     WorkOrderController controller;
@@ -153,12 +159,26 @@ public class WorkOrderRestControllerTest {
         mockMvc.perform(post(POST_ORDERS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(POST_RESPONSE))
+                .content(POST_REQUEST_CONTENT))
                 .andExpect(expectedResult)
                 .andExpect(expectedResult1)
                 .andExpect(expectedResult2)
                 .andExpect(expectedResult3)
                 .andExpect(expectedResult4);
+
+    }
+
+    @Test
+    public void thatShouldReturnsAllWorkOrdersWhenBodyContainsMultipleWorkOrder() throws Exception {
+
+        ResultMatcher expectedResult = status().isOk();
+        ResultMatcher expectedResult1 = jsonPath("$", hasSize(2));
+        mockMvc.perform(post(POST_ORDERS)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(POST_REQUEST_MULTIPLE_CONTENT))
+                .andExpect(expectedResult)
+                .andExpect(expectedResult1);
 
     }
 }
