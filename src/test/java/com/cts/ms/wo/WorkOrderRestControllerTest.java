@@ -43,6 +43,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class WorkOrderRestControllerTest {
 
 
+    public static final String POST_RESPONSE = "[{\"name\" : \"cts_1010\", \"customerid\" : \"cts\", " +
+            "\"details\" : \"cleaning\", \"start_date\" : \"10/10/2017\"}]";
     @InjectMocks
     WorkOrderController controller;
 
@@ -99,10 +101,10 @@ public class WorkOrderRestControllerTest {
         ResultMatcher expectedResult = status().isOk();
         ResultMatcher expectedResult1 = jsonPath("$.name").exists();
 
-        mockMvc.perform(getServiceRequest).andExpect(expectedResult);
-        mockMvc.perform(getServiceRequest).andExpect(expectedResult1);
+        mockMvc.perform(getServiceRequest)
+                .andExpect(expectedResult)
+                .andExpect(expectedResult1);
     }
-
 
 
     @Test
@@ -135,6 +137,28 @@ public class WorkOrderRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("[]"))
                 .andExpect(status().isBadRequest());
+
+    }
+
+
+    @Test
+    public void thatShouldReturnsAllPropertiesWhenBodyContainsCompleteWorkOrder() throws Exception {
+
+        ResultMatcher expectedResult = status().isOk();
+        ResultMatcher expectedResult1 = jsonPath("$[0].name").exists();
+        ResultMatcher expectedResult2 = jsonPath("$[0].customerid").exists();
+        ResultMatcher expectedResult3 = jsonPath("$[0].details").exists();
+        ResultMatcher expectedResult4 = jsonPath("$[0].start_date").exists();
+
+        mockMvc.perform(post(POST_ORDERS)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(POST_RESPONSE))
+                .andExpect(expectedResult)
+                .andExpect(expectedResult1)
+                .andExpect(expectedResult2)
+                .andExpect(expectedResult3)
+                .andExpect(expectedResult4);
 
     }
 }

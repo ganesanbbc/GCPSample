@@ -4,6 +4,13 @@ public class WorkOrder {
 
 
     private String name;
+    private String customerid;
+    private String details;
+    private String start_date;
+
+
+
+
 
     public WorkOrder() {
     }
@@ -19,5 +26,30 @@ public class WorkOrder {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
+
     }
 }

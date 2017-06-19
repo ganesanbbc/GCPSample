@@ -39,11 +39,11 @@ public class WorkOrderController {
     }
 
     @RequestMapping(path = ServiceEndPoint.POST_ORDERS, method = POST)
-    public ResponseEntity<WorkOrder> createWorkOrders(@RequestBody List<WorkOrder> workOrderList) {
+    public ResponseEntity<List<WorkOrder>> createWorkOrders(@RequestBody List<WorkOrder> workOrderList) {
         if (workOrderList ==null || workOrderList.size() == 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(workOrderList);
     }
 
 
