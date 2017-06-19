@@ -106,12 +106,23 @@ public class WorkOrderRestControllerTest {
 
 
     @Test
-    public void thatGetsBadRequestStatusCodeWhenBodyContainsEmptyBody() throws Exception {
+    public void thatShouldReturnsBadRequestStatusCodeWhenBodyContainsEmptyBody() throws Exception {
 
         mockMvc.perform(post(POST_ORDERS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{}"))
+                .andExpect(status().isBadRequest());
+
+    }
+
+    @Test
+    public void thatShouldReturnsBadRequestStatusCodeWhenBodyContainsEmptyArrayBody() throws Exception {
+
+        mockMvc.perform(post(POST_ORDERS)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("[]"))
                 .andExpect(status().isBadRequest());
 
     }

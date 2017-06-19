@@ -5,6 +5,8 @@ import com.cts.ms.wo.ServiceEndPoint;
 import com.cts.ms.wo.service.WorkOrderService;
 import com.cts.ms.wo.vo.WorkOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,8 +39,11 @@ public class WorkOrderController {
     }
 
     @RequestMapping(path = ServiceEndPoint.POST_ORDERS, method = POST)
-    public String createWorkOrders(@RequestBody List<WorkOrder> workOrderList) {
-        return "";
+    public ResponseEntity<WorkOrder> createWorkOrders(@RequestBody List<WorkOrder> workOrderList) {
+        if (workOrderList ==null || workOrderList.size() == 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return null;
     }
 
 
