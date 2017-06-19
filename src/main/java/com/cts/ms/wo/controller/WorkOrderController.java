@@ -5,12 +5,14 @@ import com.cts.ms.wo.ServiceEndPoint;
 import com.cts.ms.wo.service.WorkOrderService;
 import com.cts.ms.wo.vo.WorkOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 public class WorkOrderController {
@@ -32,6 +34,11 @@ public class WorkOrderController {
     @RequestMapping(path = ServiceEndPoint.GET_SERVICE, method = GET)
     public WorkOrder getWorkOrder() {
         return workOrderService.getWorkOrderById(0);
+    }
+
+    @RequestMapping(path = ServiceEndPoint.POST_ORDERS, method = POST)
+    public String createWorkOrders(@RequestBody List<WorkOrder> workOrderList) {
+        return "";
     }
 
 

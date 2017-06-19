@@ -3,6 +3,7 @@ package com.cts.ms.wo;
 import com.cts.ms.wo.controller.WorkOrderController;
 import com.cts.ms.wo.service.WorkOrderService;
 import com.cts.ms.wo.vo.WorkOrder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -27,7 +28,9 @@ import java.util.List;
 
 import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICE;
 import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICES;
+import static com.cts.ms.wo.ServiceEndPoint.POST_ORDERS;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -50,6 +53,9 @@ public class WorkOrderRestControllerTest {
 
     @Mock
     private WorkOrderService workOrderService;
+
+    @Mock
+    private ObjectMapper objectMapper;
 
 
     @Before
@@ -97,4 +103,16 @@ public class WorkOrderRestControllerTest {
         mockMvc.perform(getServiceRequest).andExpect(expectedResult1);
     }
 
+
+
+    @Test
+    public void thatGetsBadRequestStatusCodeWhenBodyContainsEmptyBody() throws Exception {
+
+        mockMvc.perform(post(POST_ORDERS)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}"))
+                .andExpect(status().isBadRequest());
+
+    }
 }
