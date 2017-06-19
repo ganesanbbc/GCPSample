@@ -8,4 +8,6 @@ public interface WorkOrderService {
     List<WorkOrder> getWorkOrders();
 
     WorkOrder getWorkOrderById(int i);
+
+    List<WorkOrder> createOrders(List<WorkOrder> workOrders);
 }

@@ -25,4 +25,9 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     public WorkOrder getWorkOrderById(int i) {
          return workOrderDAO.getOrderById(i);
     }
+
+    @Override
+    public List<WorkOrder> createOrders(List<WorkOrder> workOrders) {
+        return workOrderDAO.createWorkOrder(workOrders);
+    }
 }

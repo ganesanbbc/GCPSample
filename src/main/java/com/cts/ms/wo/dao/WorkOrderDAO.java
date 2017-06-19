@@ -37,4 +37,8 @@ public class WorkOrderDAO {
     public WorkOrder getOrderById(int i) {
         return new WorkOrder("");
     }
+
+    public List<WorkOrder> createWorkOrder(List<WorkOrder> workOrderList) {
+        return workOrderList;
+    }
 }

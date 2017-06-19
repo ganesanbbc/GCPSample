@@ -37,6 +37,25 @@ public class WorkOrderServiceTest {
         assertThat(actualWorkOrderName.size(), is(expectedSize));
     }
 
+    @Test
+    public void thatRespondListOfCreatedWorkOrdersWhenRequestingMultipleService() {
+
+        List<WorkOrder> workOrderList = new ArrayList();
+        workOrderList.add(new WorkOrder("SOME_SERVICE_NAME"));
+        Mockito.when(orderDao.createWorkOrder(workOrderList)).thenReturn(workOrderList);
+
+        int expectedSize = workOrderList.size();
+
+        List<WorkOrder> actualWorkOrder = service.createOrders(workOrderList);
+
+        assertThat(actualWorkOrder.size(), is(expectedSize));
+
+
+    }
+
+
+
+
     private List<WorkOrder> whenGetAllOrders() {
         return service.getWorkOrders();
     }
