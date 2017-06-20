@@ -1,5 +1,14 @@
 <html>
 <body>
 Index Page
+
+<div th:if="${not #lists.isEmpty(orders)}">
+    <table>
+        <tr th:each="order :${orders}">
+            <td th:text="${order.name}"></td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>
