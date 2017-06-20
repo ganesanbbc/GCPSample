@@ -28,6 +28,6 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public List<WorkOrder> createOrders(List<WorkOrder> workOrders) {
-        return workOrders;
+        return workOrderDAO.createWorkOrder(workOrders);
     }
 }
