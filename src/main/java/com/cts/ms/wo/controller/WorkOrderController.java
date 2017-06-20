@@ -48,9 +48,7 @@ public class WorkOrderController {
         if (workOrder ==null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-
         workOrderService.updateOrder(workOrder);
-
         return ResponseEntity.status(HttpStatus.OK).body("OK");
     }
 

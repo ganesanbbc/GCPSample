@@ -28,14 +28,13 @@ public class WorkOrderDAO {
 
         while (result.hasNext()) {
             Entity task = result.next();
-
-//            long id = task.getLong("ID");
+            long id =  task.getKey().getId();
             String name = task.getString("name");
             String customerid = task.getString("customerid");
             String details = task.getString("details");
             String start_date = task.getString("start_date");
             String status = task.getString("status");
-            workOrderList.add(new WorkOrder(0l,name,customerid,details,start_date,status));
+            workOrderList.add(new WorkOrder(id,name,customerid,details,start_date,status));
         }
 
         return workOrderList;
@@ -69,9 +68,9 @@ public class WorkOrderDAO {
 
         Transaction transaction = datastore.newTransaction();
         try {
-            Entity task = transaction.get(keyFactory.newKey(0));
+            Entity task = transaction.get(keyFactory.newKey(workOrder.getId()));
             if (task != null) {
-                transaction.put(Entity.newBuilder(task).set("done", true).build());
+                transaction.put(Entity.newBuilder(task).set("status", "progress").build());
             }
             transaction.commit();
         } finally {
