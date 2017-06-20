@@ -31,8 +31,8 @@ public class WorkOrderDAO {
             String name = task.getString("name");
             String customerid = task.getString("customerid");
             String details = task.getString("details");
-            String start_date = task.getString("start_date ");
-            String status = task.getString("status ");
+            String start_date = task.getString("start_date");
+            String status = task.getString("status");
             workOrderList.add(new WorkOrder(name,customerid,details,start_date,status));
         }
 

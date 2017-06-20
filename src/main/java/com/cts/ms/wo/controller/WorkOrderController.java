@@ -3,7 +3,6 @@ package com.cts.ms.wo.controller;
 
 import com.cts.ms.wo.ServiceEndPoint;
 import com.cts.ms.wo.service.WorkOrderService;
-import com.cts.ms.wo.service.WorkOrderServiceImpl;
 import com.cts.ms.wo.vo.WorkOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +47,18 @@ public class WorkOrderController {
         List<WorkOrder> proceededOrders = workOrderService.createOrders(workOrderList);
         return ResponseEntity.status(HttpStatus.OK).body(proceededOrders);
     }
+
+    @RequestMapping(path = ServiceEndPoint.UPDATE_ORDERS, method = POST)
+    public ResponseEntity<String> updateWorkOrders(@RequestBody WorkOrder workOrder) {
+        if (workOrder ==null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body("OK");
+    }
+
+
+
 
 
 

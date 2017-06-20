@@ -11,12 +11,19 @@ public class WorkOrder {
 
     public WorkOrder(String name, String customerid, String details, String start_date, String status){
 
-        this(name, customerid, details,start_date);
+        this.name = name;
+        this.customerid = customerid;
+        this.details = details;
+        this.start_date = start_date;
         this.status = status;
     }
 
     public WorkOrder(String name) {
         this.name = name;
+    }
+
+
+    public WorkOrder() {
     }
 
     public WorkOrder(String name, String customerid, String details, String start_date) {
