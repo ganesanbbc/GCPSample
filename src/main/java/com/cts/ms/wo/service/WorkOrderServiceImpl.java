@@ -17,7 +17,6 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public List<WorkOrder> getWorkOrders() {
-
         return workOrderDAO.getOrders();
     }
 
@@ -29,5 +28,10 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     @Override
     public List<WorkOrder> createOrders(List<WorkOrder> workOrders) {
         return workOrderDAO.createWorkOrder(workOrders);
+    }
+
+    @Override
+    public void updateOrder(WorkOrder workOrder) {
+        workOrderDAO.updateWorkOrder(workOrder);
     }
 }

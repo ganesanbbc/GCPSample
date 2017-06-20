@@ -10,4 +10,6 @@ public interface WorkOrderService {
     WorkOrder getWorkOrderById(int i);
 
     List<WorkOrder> createOrders(List<WorkOrder> workOrders);
+
+    void updateOrder(WorkOrder workOrder);
 }

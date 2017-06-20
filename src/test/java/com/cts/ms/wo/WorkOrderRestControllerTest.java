@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
@@ -63,12 +64,14 @@ public class WorkOrderRestControllerTest {
     @Mock
     private WorkOrderService workOrderService;
 
+    private MockMvc mockMvc1;
+
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         //Don't Delete this for reference
-//        this.mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        this.mockMvc1 = MockMvcBuilders.webAppContextSetup(context).build();
         mockMvc = standaloneSetup(controller).build();
     }
 
@@ -78,7 +81,7 @@ public class WorkOrderRestControllerTest {
 
         RequestBuilder mockRequest = MockMvcRequestBuilders.get("/");
         ResultMatcher expectedResult = status().isOk();
-        mockMvc.perform(mockRequest)
+        mockMvc1.perform(mockRequest)
                 .andExpect(expectedResult);
     }
 

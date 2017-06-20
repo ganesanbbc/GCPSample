@@ -3,6 +3,7 @@ package com.cts.ms.wo.vo;
 public class WorkOrder {
 
 
+    private long id;
     private String name;
     private String customerid;
     private String details;
@@ -22,8 +23,17 @@ public class WorkOrder {
         this.name = name;
     }
 
-
     public WorkOrder() {
+
+    }
+
+    public WorkOrder(long id, String name, String customerid, String details, String start_date, String status) {
+        this.id = id;
+        this.name = name;
+        this.customerid = customerid;
+        this.details = details;
+        this.start_date = start_date;
+        this.status = status;
     }
 
     public WorkOrder(String name, String customerid, String details, String start_date) {
@@ -32,6 +42,14 @@ public class WorkOrder {
         this.customerid = customerid;
         this.details = details;
         this.start_date = start_date;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

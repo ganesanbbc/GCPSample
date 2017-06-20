@@ -28,11 +28,6 @@ public class WorkOrderController {
         return workOrderService.getWorkOrders();
     }
 
-    @RequestMapping(path = "/", method = GET)
-    public String getIndexPage() {
-        return "Welcome";
-    }
-
     @RequestMapping(path = ServiceEndPoint.GET_SERVICE, method = GET)
     public WorkOrder getWorkOrder() {
         return workOrderService.getWorkOrderById(0);
@@ -53,6 +48,8 @@ public class WorkOrderController {
         if (workOrder ==null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+
+        workOrderService.updateOrder(workOrder);
 
         return ResponseEntity.status(HttpStatus.OK).body("OK");
     }
