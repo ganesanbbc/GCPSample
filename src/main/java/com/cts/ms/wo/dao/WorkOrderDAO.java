@@ -29,7 +29,11 @@ public class WorkOrderDAO {
         while (result.hasNext()) {
             Entity task = result.next();
             String name = task.getString("name");
-            workOrderList.add(new WorkOrder(name));
+            String customerid = task.getString("customerid");
+            String details = task.getString("details");
+            String start_date = task.getString("start_date ");
+            String status = task.getString("status ");
+            workOrderList.add(new WorkOrder(name,customerid,details,start_date,status));
         }
 
         return workOrderList;
@@ -48,7 +52,9 @@ public class WorkOrderDAO {
                     .set("customerid", workOrder.getCustomerid())
                     .set("details", workOrder.getDetails())
                     .set("start_date", workOrder.getStart_date())
+                    .set("status", "open")
                     .build();
+            //Need to put as a one transaction
             datastore.put(task);
 
         }

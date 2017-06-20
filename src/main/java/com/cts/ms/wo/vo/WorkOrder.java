@@ -7,9 +7,12 @@ public class WorkOrder {
     private String customerid;
     private String details;
     private String start_date;
+    private String status;
 
-    public WorkOrder(){
+    public WorkOrder(String name, String customerid, String details, String start_date, String status){
 
+        this(name, customerid, details,start_date);
+        this.status = status;
     }
 
     public WorkOrder(String name) {
@@ -54,6 +57,13 @@ public class WorkOrder {
 
     public void setCustomerid(String customerid) {
         this.customerid = customerid;
+    }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
