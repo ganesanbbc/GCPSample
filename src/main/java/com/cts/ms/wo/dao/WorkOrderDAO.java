@@ -1,10 +1,7 @@
 package com.cts.ms.wo.dao;
 
 import com.cts.ms.wo.vo.WorkOrder;
-import com.google.cloud.datastore.Datastore;
-import com.google.cloud.datastore.DatastoreOptions;
-import com.google.cloud.datastore.Entity;
-import com.google.cloud.datastore.Query;
+import com.google.cloud.datastore.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,10 +13,14 @@ public class WorkOrderDAO {
 
     public static final String TABLE_NAME = "WorkOrder";
 
-    public List<WorkOrder> getOrders() {
-         List<WorkOrder> workOrderList = new ArrayList();
+    Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+    private final KeyFactory keyFactory = datastore.newKeyFactory().setKind(TABLE_NAME);
 
-        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+
+    public List<WorkOrder> getOrders() {
+        List<WorkOrder> workOrderList = new ArrayList();
+
+
         Query<Entity> query =
                 Query.newEntityQueryBuilder().setKind(TABLE_NAME).build();
 
@@ -38,7 +39,21 @@ public class WorkOrderDAO {
         return new WorkOrder("");
     }
 
-    public List<WorkOrder> createWorkOrder(List<WorkOrder> workOrderList) {
+    public List<WorkOrder> createWorkOrder(List<WorkOrder> workOrderList) throws DatastoreException {
+
+        for (WorkOrder workOrder : workOrderList) {
+            Key key = datastore.allocateId(keyFactory.newKey());
+            Entity task = Entity.newBuilder(key)
+                    .set("name", workOrder.getName())
+                    .set("customerid", workOrder.getCustomerid())
+                    .set("details", workOrder.getDetails())
+                    .set("start_date", workOrder.getStart_date())
+                    .build();
+            datastore.put(task);
+
+        }
+
+
         return workOrderList;
     }
 }
