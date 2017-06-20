@@ -10,14 +10,29 @@ public class WorkOrder {
 
 
 
+    public WorkOrder(){
 
-
-    public WorkOrder() {
     }
+
+
+//    public WorkOrder(String name, String customerid, String details, String start_date) {
+//        this.name = name;
+//        this.customerid = customerid;
+//        this.details = details;
+//        this.start_date = start_date;
+//    }
 
     public WorkOrder(String name) {
 
         this.name = name;
+    }
+
+    public WorkOrder(String name, String customerid, String details, String start_date) {
+
+        this.name = name;
+        this.customerid = customerid;
+        this.details = details;
+        this.start_date = start_date;
     }
 
     public String getName() {

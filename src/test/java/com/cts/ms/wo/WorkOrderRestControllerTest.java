@@ -2,6 +2,7 @@ package com.cts.ms.wo;
 
 import com.cts.ms.wo.controller.WorkOrderController;
 import com.cts.ms.wo.service.WorkOrderService;
+import com.cts.ms.wo.service.WorkOrderServiceImpl;
 import com.cts.ms.wo.vo.WorkOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -30,8 +31,10 @@ import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICE;
 import static com.cts.ms.wo.ServiceEndPoint.GET_SERVICES;
 import static com.cts.ms.wo.ServiceEndPoint.POST_ORDERS;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -51,6 +54,7 @@ public class WorkOrderRestControllerTest {
             "\"details\" : \"cleaning\", \"start_date\" : \"10/10/2017\"}," +
             "{\"name\" : \"cts_1010\", \"customerid\" : \"cts\", " +
             "\"details\" : \"cleaning\", \"start_date\" : \"10/10/2017\"}]";
+
     @InjectMocks
     WorkOrderController controller;
 
@@ -62,8 +66,8 @@ public class WorkOrderRestControllerTest {
     @Mock
     private WorkOrderService workOrderService;
 
-    @Mock
-    private ObjectMapper objectMapper;
+//    @Mock
+//    private ObjectMapper objectMapper;
 
 
     @Before
@@ -83,9 +87,9 @@ public class WorkOrderRestControllerTest {
         mockMvc.perform(mockRequest)
                 .andExpect(expectedResult);
 
-        List<WorkOrder> workOrderList = new ArrayList();
-        workOrderList.add(new WorkOrder(""));
-        when(workOrderService.getWorkOrders()).thenReturn(workOrderList);
+//        List<WorkOrder> workOrderList = new ArrayList();
+//        workOrderList.add(new WorkOrder(""));
+//        when(workOrderService.getWorkOrders()).thenReturn(workOrderList);
     }
 
 
@@ -150,6 +154,11 @@ public class WorkOrderRestControllerTest {
     @Test
     public void thatShouldReturnsAllPropertiesWhenBodyContainsCompleteWorkOrder() throws Exception {
 
+        List<WorkOrder> workOrderList = new ArrayList();
+        workOrderList.add(new WorkOrder("cts","cts_1011","cleaning","10/10/2017"));
+        workOrderList.add(new WorkOrder("cts","cts_1012","cleaning","10/10/2017"));
+        when(workOrderService.createOrders(isA(List.class))).thenReturn(workOrderList);
+
         ResultMatcher expectedResult = status().isOk();
         ResultMatcher expectedResult1 = jsonPath("$[0].name").exists();
         ResultMatcher expectedResult2 = jsonPath("$[0].customerid").exists();
@@ -159,7 +168,7 @@ public class WorkOrderRestControllerTest {
         mockMvc.perform(post(POST_ORDERS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(POST_REQUEST_CONTENT))
+                .content(POST_REQUEST_MULTIPLE_CONTENT))
                 .andExpect(expectedResult)
                 .andExpect(expectedResult1)
                 .andExpect(expectedResult2)
@@ -171,14 +180,21 @@ public class WorkOrderRestControllerTest {
     @Test
     public void thatShouldReturnsAllWorkOrdersWhenBodyContainsMultipleWorkOrder() throws Exception {
 
+        List<WorkOrder> workOrderList = new ArrayList();
+        workOrderList.add(new WorkOrder("cts_1010"));
+        workOrderList.add(new WorkOrder("cts_1011"));
+        when(workOrderService.createOrders(isA(List.class))).thenReturn(workOrderList);
+
+
         ResultMatcher expectedResult = status().isOk();
         ResultMatcher expectedResult1 = jsonPath("$", hasSize(2));
         mockMvc.perform(post(POST_ORDERS)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(POST_REQUEST_MULTIPLE_CONTENT))
+                .andDo(print())
                 .andExpect(expectedResult)
-                .andExpect(expectedResult1);
+                .andExpect(expectedResult1).andDo(print());
 
     }
 }
