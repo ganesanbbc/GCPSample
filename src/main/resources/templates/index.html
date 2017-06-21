@@ -25,7 +25,7 @@
                                             <h4 class="card-title" th:text="${order.name}"></h4>
                                             <p class="card-text"  th:text="${order.details}"></p>
 
-                                            <form action="#" th:action="@{/changeStatus}" th:object="${order}" method="post">
+                                            <form action="#" th:action="@{changeStatus}" th:object="${order}" method="post">
                                                 <button type="submit" class="btn btn-primary"  th:text="${order.status}"></button>
                                             </form>
 
