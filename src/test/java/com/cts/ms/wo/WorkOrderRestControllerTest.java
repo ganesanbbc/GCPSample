@@ -76,14 +76,14 @@ public class WorkOrderRestControllerTest {
     }
 
 
-    @Test
-    public void thatGotIndexPageResponseWhenCallInitialPage() throws Exception {
-
-        RequestBuilder mockRequest = MockMvcRequestBuilders.get("/");
-        ResultMatcher expectedResult = status().isOk();
-        mockMvc1.perform(mockRequest)
-                .andExpect(expectedResult);
-    }
+//    @Test
+//    public void thatGotIndexPageResponseWhenCallInitialPage() throws Exception {
+//
+//        RequestBuilder mockRequest = MockMvcRequestBuilders.get("/");
+//        ResultMatcher expectedResult = status().isOk();
+//        mockMvc1.perform(mockRequest)
+//                .andExpect(expectedResult);
+//    }
 
 
     @Test

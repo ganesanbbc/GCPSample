@@ -32,6 +32,9 @@ public class WorkOrderServiceImpl implements WorkOrderService {
 
     @Override
     public void updateOrder(WorkOrder workOrder) {
+        if (workOrder.getStatus().equalsIgnoreCase("open")) {
+            workOrder.setStatus("Progress");
+        }
         workOrderDAO.updateWorkOrder(workOrder);
     }
 }
