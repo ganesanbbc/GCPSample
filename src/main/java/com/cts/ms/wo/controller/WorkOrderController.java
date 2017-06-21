@@ -52,12 +52,9 @@ public class WorkOrderController {
         return ResponseEntity.status(HttpStatus.OK).body("OK");
     }
 
-
-
-
-
-
-
-
+    @RequestMapping("/_ah/health")
+    public ResponseEntity<String> healthCheck() {
+        return new ResponseEntity<>("Healthy", HttpStatus.OK);
+    }
 
 }

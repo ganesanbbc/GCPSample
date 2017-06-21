@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Controller
+@Controller
 public class UIController extends WebMvcConfigurerAdapter {
 
 

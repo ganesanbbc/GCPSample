@@ -8,5 +8,8 @@ handlers:
 - url: /.*
   script: this field is required, but ignored
 
+health_check:
+  enable_health_check: False
+
 manual_scaling:
   instances: 1
