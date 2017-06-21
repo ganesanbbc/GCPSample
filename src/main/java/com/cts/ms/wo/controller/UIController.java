@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Valid;
@@ -35,10 +36,10 @@ public class UIController extends WebMvcConfigurerAdapter {
     }
 
 
-    @PostMapping("/changeStatus")
+    @RequestMapping(value = "/changeStatus", method = RequestMethod.POST )
     public String addProduct(@Valid WorkOrder workOrder) {
         service.updateOrder(workOrder);
-        return INDEX_PAGE;
+        return "success";
     }
 
 
