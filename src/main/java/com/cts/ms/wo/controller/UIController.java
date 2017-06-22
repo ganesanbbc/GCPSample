@@ -2,15 +2,13 @@ package com.cts.ms.wo.controller;
 
 import com.cts.ms.wo.service.WorkOrderService;
 import com.cts.ms.wo.vo.WorkOrder;
+import com.sun.media.jfxmedia.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +26,19 @@ public class UIController extends WebMvcConfigurerAdapter {
 
     @GetMapping(ROOT)
     public String loadIndexPage(Model model) {
-        List<WorkOrder> orders = service.getWorkOrders();
-//        List<WorkOrder> orders = getStaticWorkOrders();
+//        List<WorkOrder> orders = service.getWorkOrders();
+        List<WorkOrder> orders = getStaticWorkOrders();
 
         model.addAttribute("orders", orders);
+        model.addAttribute("order", new WorkOrder());
         return INDEX_PAGE;
     }
 
 
-    @RequestMapping(value = "/changeStatus", method = RequestMethod.POST )
-    public String addProduct(@Valid WorkOrder workOrder) {
-        service.updateOrder(workOrder);
-        return "success";
+    @RequestMapping(value = "/changeStatus/{id}", method= RequestMethod.POST)
+    public void processForm(@PathVariable Long id) {
+        Logger.logMsg(Logger.DEBUG,"Add product called"+ id);
+        service.updateOrder(id);
     }
 
 
@@ -47,8 +46,9 @@ public class UIController extends WebMvcConfigurerAdapter {
     private List<WorkOrder> getStaticWorkOrders() {
         List<WorkOrder> orders = new ArrayList();
 
-        orders.add(new WorkOrder("name1"));
-        orders.add(new WorkOrder("name2"));
+        orders.add(new WorkOrder(1,"CustomerName","cts","details","10/10/2017","open"));
+        orders.add(new WorkOrder(2,"CustomerName","cts","details","10/10/2017","open"));
+        orders.add(new WorkOrder(3,"CustomerName","cts","details","10/10/2017","open"));
         return orders;
     }
 

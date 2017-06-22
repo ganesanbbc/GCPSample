@@ -64,11 +64,11 @@ public class WorkOrderDAO {
         return workOrderList;
     }
 
-    public void updateWorkOrder(WorkOrder workOrder) {
+    public void updateWorkOrder(Long workOrder) {
 
         Transaction transaction = datastore.newTransaction();
         try {
-            Entity task = transaction.get(keyFactory.newKey(workOrder.getId()));
+            Entity task = transaction.get(keyFactory.newKey(workOrder));
             if (task != null) {
                 transaction.put(Entity.newBuilder(task).set("status", "progress").build());
             }

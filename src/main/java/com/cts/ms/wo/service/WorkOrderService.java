@@ -11,5 +11,5 @@ public interface WorkOrderService {
 
     List<WorkOrder> createOrders(List<WorkOrder> workOrders);
 
-    void updateOrder(WorkOrder workOrder);
+    void updateOrder(Long workOrder);
 }
