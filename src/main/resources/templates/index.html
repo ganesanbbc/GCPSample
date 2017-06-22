@@ -25,7 +25,7 @@
                                         <div class="card-block">
                                             <h4 class="card-title" th:text="${tmpOrder.name}"></h4>
                                             <p class="card-text" th:text="${tmpOrder.details}"></p>
-                                            <button class='btn btn-primary delete' th:text="${tmpOrder.id}"
+                                            <button class='btn btn-primary delete' th:text="${tmpOrder.status}"
                                                     th:attr="data-id=${tmpOrder.id}">
                                             </button>
                                         </div>
