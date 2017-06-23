@@ -48,7 +48,7 @@
 
 <script>
     $(document).ready(function () {
-    alert(('.changestatus').attr('data-id'));
+    alert($('.changestatus').attr('data-id'));
         $(document).on('click', '.changestatus', function () {
             $.ajax({
                 url: "/changeStatus/"+$('.changestatus').attr('data-id'),
