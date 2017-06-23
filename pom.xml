@@ -25,6 +25,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source> <!-- REQUIRED -->
 		<maven.compiler.target>${java.version}</maven.compiler.target> <!-- REQUIRED -->
 		<appengine.maven.plugin>1.3.1</appengine.maven.plugin>
+
 	</properties>
 
 	<dependencies>
@@ -44,12 +45,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-el</artifactId>
 		</dependency>
 
 
@@ -103,6 +98,18 @@
 				<version>${appengine.maven.plugin}</version>
 			</plugin>
 			<!-- END plugin -->
+
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 		</plugins>
 	</build>
