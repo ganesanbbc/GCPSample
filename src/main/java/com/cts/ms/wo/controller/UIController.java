@@ -28,8 +28,8 @@ public class UIController extends WebMvcConfigurerAdapter {
 
     @GetMapping(ROOT)
     public String loadIndexPage(Model model) {
-//        List<WorkOrder> orders = service.getWorkOrders();
-        List<WorkOrder> orders = getStaticWorkOrders();
+        List<WorkOrder> orders = service.getWorkOrders();
+//        List<WorkOrder> orders = getStaticWorkOrders();
         model.addAttribute("orders", orders);
         return INDEX_PAGE;
     }
