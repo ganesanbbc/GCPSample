@@ -1,34 +1,337 @@
-
-# [START swagger]
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: "A simple Google Cloud Endpoints API example."
-  title: "Endpoints Example"
-  version: "1.0.0"
-host: "mydogshop-3105171.appspot.com"
-# [END swagger]
-
-
-basePath: "/"
-consumes:
-  - "application/json"
-produces:
-  - "application/json"
-
-schemes:
-  - "http"
-  - "https"
-
-
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+host: 'localhost:8080'
+basePath: /
+tags:
+  - name: work-order-controller
+    description: Work Order Controller
+  - name: ui-controller
+    description: UI Controller
 paths:
-  "/getServices":
+  /:
     get:
-      description: "Returns sample information."
+      tags:
+        - ui-controller
+      summary: loadIndexPage
+      operationId: loadIndexPageUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
       responses:
-        200:
-         description: "Returns sample information."
-
-        default:
-          description: "Returns sample information."
-
-
+        '200':
+          description: OK
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /_ah/health:
+    get:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    head:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingHEAD
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    options:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingOPTIONS
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - work-order-controller
+      summary: healthCheck
+      operationId: healthCheckUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  '/changeStatus/{id}':
+    post:
+      tags:
+        - ui-controller
+      summary: processForm
+      operationId: processFormUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getWorkOrder:
+    get:
+      tags:
+        - work-order-controller
+      summary: getWorkOrder
+      operationId: getWorkOrderUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/WorkOrder'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getWorkOrders:
+    get:
+      tags:
+        - work-order-controller
+      summary: getWorkOrders
+      operationId: getWorkOrdersUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/WorkOrder'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /postWorkOrders:
+    post:
+      tags:
+        - work-order-controller
+      summary: createWorkOrders
+      operationId: createWorkOrdersUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: workOrderList
+          description: workOrderList
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/WorkOrder'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/WorkOrder'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /updateOrder:
+    post:
+      tags:
+        - work-order-controller
+      summary: updateWorkOrders
+      operationId: updateWorkOrdersUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: workOrder
+          description: workOrder
+          required: true
+          schema:
+            $ref: '#/definitions/WorkOrder'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+definitions:
+  WorkOrder:
+    type: object
+    properties:
+      customerid:
+        type: string
+      details:
+        type: string
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      start_date:
+        type: string
+      status:
+        type: string
