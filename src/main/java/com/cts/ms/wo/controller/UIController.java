@@ -36,9 +36,10 @@ public class UIController extends WebMvcConfigurerAdapter {
 
 
     @RequestMapping(value = "/changeStatus/{id}", method = RequestMethod.POST)
-    public void processForm(@PathVariable Long id) {
+    public String processForm(@PathVariable Long id) {
         logger.warning("WorkOrderID"+id);
         service.updateOrder(id);
+        return INDEX_PAGE;
     }
 
 

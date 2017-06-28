@@ -16,4 +16,4 @@ manual_scaling:
 
 endpoints_api_service:
   name: "workorder-ri.appspot.com"
-  config_id: "2017-06-28r2"
+  config_id: "2017-06-28r3"
