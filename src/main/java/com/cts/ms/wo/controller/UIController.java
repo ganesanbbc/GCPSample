@@ -17,7 +17,7 @@ public class UIController extends WebMvcConfigurerAdapter {
 
 
     public static final String INDEX_PAGE = "index";
-    public static final String ROOT = "/";
+    public static final String ROOT = "/index";
 
     Logger logger = Logger.getLogger("UIController");
 

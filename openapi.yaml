@@ -15,7 +15,7 @@ tags:
   - name: ui-controller
     description: UI Controller
 paths:
-  /:
+  /index:
     get:
       tags:
         - ui-controller
