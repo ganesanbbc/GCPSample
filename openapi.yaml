@@ -3,7 +3,6 @@ info:
   description: Api Documentation
   version: '1.0'
   title: Api Documentation
-  termsOfService: 'urn:tos'
   contact: {}
   license:
     name: Apache 2.0
@@ -125,7 +124,7 @@ paths:
           description: workOrderList
           required: true
           schema:
-            type: array
+            type: object
             items:
               $ref: '#/definitions/WorkOrder'
       responses:
