@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
-host: 'https://workorder-ri.appspot.com/'
+host: 'workorder-ri.appspot.com'
 basePath: /
 tags:
   - name: work-order-controller
