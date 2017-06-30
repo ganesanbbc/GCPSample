@@ -53,7 +53,7 @@ public class WorkOrderDAO {
                     .set("customerid", workOrder.getCustomerid())
                     .set("details", workOrder.getDetails())
                     .set("start_date", workOrder.getStart_date())
-                    .set("status", "open")
+                    .set("status", "ready")
                     .build();
             //Need to put as a one transaction
             datastore.put(task);
