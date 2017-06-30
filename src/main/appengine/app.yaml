@@ -1,5 +1,6 @@
 runtime: java
 env: flex
+service: workorder
 
 #runtime_config:  # Optional
 #  jdk: openjdk8
