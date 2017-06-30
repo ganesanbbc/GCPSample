@@ -6,11 +6,50 @@
     <link rel="stylesheet" type="text/css"
           href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+.rTable {
+	display: table;
+}
+
+.rTableRow {
+	display: table-row;
+	margin:  0 10px;
+}
+
+.rTableHeading {
+	display: table-header-group;
+}
+
+.rTableBody {
+	display: table-row-group;
+}
+
+.rTableFoot {
+	display: table-footer-group;
+}
+
+.rTableCell, .rTableHead {
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
 
 <div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>View Work Order</h1>
     <div class="row" th:if="${not #lists.isEmpty(orders)}">
         <div class="col-xs-12 col-sm-9">
             <div class="row">
@@ -27,7 +66,6 @@
                                             <button class='btn btn-primary delete' th:text="${tmpOrder.status}"
                                                     th:attr="data-id=${tmpOrder.id}"
                                                     th:onclick="'javascript:changeStatus(\'' + ${tmpOrder.id} + '\');'">
-
                                             </button>
                                             <hr/>
                                         </div>
@@ -37,8 +75,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-xs-1 my-sizer-element"></div>
                 </div>
 
