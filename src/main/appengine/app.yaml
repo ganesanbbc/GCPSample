@@ -15,6 +15,6 @@ health_check:
 manual_scaling:
   instances: 1
 
-endpoints_api_service:
-  name: "workorder-ri.appspot.com"
-  config_id: "2017-06-28r3"
+#endpoints_api_service:
+#  name: "workorder-ri.appspot.com"
+#  config_id: "2017-06-28r3"
