@@ -22,7 +22,7 @@ public class WorkEngineApp {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping(ServiceEndPoint.POST_ORDERS).allowedOrigins(ORGIN_URL);
+                registry.addMapping(ServiceEndPoint.POST_ORDERS).allowedOrigins("*");
             }
         };
     }
